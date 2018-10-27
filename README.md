@@ -1,2 +1,37 @@
-# suds-uof
-Comparing police department use of force policies with police killings data, Campaign Zero found that police departments with policies that place clear restrictions on when and how officers use force had significantly fewer killings than those that did not have these restrictions in place. Similarly, Campaign Zero found that many cities have police union contracts with policy provisions that make it harder to hold police accountable for police violence. However, these policy documents were inspected manually by the limited personnel at Campaign Zero, which poses limitations to scale to the hundreds of police jurisdictions across the country. To address this, SUDS students will use methods from natural language processing and machine learning to computationally identify elements of new, unseen policy documents that are likely to have policies placing clear restrictions on how officers use force and that are likely to have policies that make it harder to hold police accountable. With this data, the SUDS team may also assist Campaign Zero with further analyses of the relationship between departmental use of force policies and police violence, potentially including social network analyses of officers involved in police violence incidents.
+## Welcome to GitHub Pages
+
+You can use the [editor on GitHub](https://github.com/imsugandha/suds-uof/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+
+Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+
+### Markdown
+
+Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+
+```markdown
+Syntax highlighted code block
+
+# Header 1
+## Header 2
+### Header 3
+
+- Bulleted
+- List
+
+1. Numbered
+2. List
+
+**Bold** and _Italic_ and `Code` text
+
+[Link](url) and ![Image](src)
+```
+
+For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+
+### Jekyll Themes
+
+Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/imsugandha/suds-uof/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+
+### Support or Contact
+
+Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.

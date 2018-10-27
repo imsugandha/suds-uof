@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to SUDS Police Use of Force data project.
 
 You can use the [editor on GitHub](https://github.com/imsugandha/suds-uof/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 

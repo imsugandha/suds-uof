@@ -1,0 +1,89 @@
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(stringr)
+library(tm)
+library(SnowballC)
+library(wordcloud)
+library(RColorBrewer)
+```
+
+```{r}
+setwd("/Users/huangzijing/Desktop/suds")
+# add a line of variable names on the top of MLuseofforcedatarevised5.csv -- "Content" and "Category" 
+# save the new file as MLuseofforcedatarevised5v2.csv
+data1 <- read.csv("MLuseofforcedatarevised5v2.csv", stringsAsFactors = FALSE)
+data2 <- read.csv("Policeunioncontractdata.csv", stringsAsFactors = FALSE)
+```
+
+```{r}
+ggplot(data = data1) + 
+  geom_bar(mapping = aes(x = Category)) + 
+  coord_flip()
+ggplot(data = data2) + 
+  geom_bar(mapping = aes(x = category)) + 
+  coord_flip()
+```
+
+```{r}
+data1_category <- unique(data1$Category)
+data1_category <- as.data.frame(data1_category)
+data1_words <- list()
+data1_frequency <- list()
+for (i in 1:nrow(data1_category)) {
+  data1_i <- subset(data1, Category == data1_category[i,])
+  text <- paste(data1_i$Content, collapse = " ")
+  source <- VectorSource(text)
+  corpus <-Corpus(source)
+  corpus <- tm_map(corpus, content_transformer(tolower))
+  corpus <- tm_map(corpus, removeNumbers)
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, stripWhitespace)
+  corpus <- tm_map(corpus, removeWords, stopwords("english"))
+  dtm <- as.matrix(DocumentTermMatrix(corpus))
+  frequency <- colSums(dtm)
+  frequency <- sort(frequency, decreasing = TRUE)
+  data1_frequency[length(data1_frequency)+1] <- list(frequency)
+  words <- names(frequency)
+  data1_words[length(data1_words)+1] <- list(words)
+  layout(matrix(c(1, 2), nrow=2),heights=c(1, 4))
+  par(mar=rep(0, 4))
+  plot.new()
+  text(x=0.5, y=0.5, paste("Word Cloud of Category ", i))
+  wordcloud(words, frequency, min.freq=5,scale=c(3,.1), random.order = FALSE,rot.per=0.35,colors=brewer.pal(8, "Dark2"))
+}
+```
+
+```{r}
+data2_category <- unique(data2$category)
+data2_category <- as.data.frame(data2_category)
+data2_language_words <- list()
+data2_language_frequency <- list()
+for (i in 1:nrow(data2_category)) {
+  data2_i <- subset(data2, category == data2_category[i,])
+  text <- paste(data2_i$language, collapse = " ")
+  source <- VectorSource(text)
+  corpus <-Corpus(source)
+  corpus <- tm_map(corpus, content_transformer(tolower))
+  corpus <- tm_map(corpus, removeNumbers)
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, stripWhitespace)
+  corpus <- tm_map(corpus, removeWords, stopwords("english"))
+  dtm <- as.matrix(DocumentTermMatrix(corpus))
+  frequency <- colSums(dtm)
+  frequency <- sort(frequency, decreasing = TRUE)
+  data2_language_frequency[length(data2_language_frequency)+1] <- list(frequency)
+  words <- names(frequency)
+  data2_language_words[length(data2_language_words)+1] <- list(words)
+  layout(matrix(c(1, 2), nrow=2),heights=c(1, 4))
+  par(mar=rep(0, 4))
+  plot.new()
+  text(x=0.5, y=0.5, paste("Word Cloud of Category ", i))
+  wordcloud(words, frequency, min.freq=5,scale=c(3,.1), random.order = FALSE,rot.per=0.35,colors=brewer.pal(8, "Dark2"))
+}
+```
